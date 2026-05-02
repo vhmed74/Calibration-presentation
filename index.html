@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrolyte Analyzer Presentation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #050A15;
+            font-family: 'Inter', sans-serif;
+            cursor: none; /* Hide default cursor to use custom one */
+        }
+
+        /* Custom Glowing Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 10000;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #63B3ED;
+            box-shadow: 0 0 10px #63B3ED, 0 0 20px #2B6CB0;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(99, 179, 237, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Iframe container for fade transitions */
+        #presentation-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Glassmorphism Controls */
+        .controls-wrapper {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        body:hover .controls-wrapper {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            background: rgba(26, 54, 93, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(99, 179, 237, 0.2);
+        }
+
+        .btn {
+            background: transparent;
+            color: #E2E8F0;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .btn:hover {
+            background: rgba(99, 179, 237, 0.3);
+            color: #ffffff;
+            box-shadow: 0 0 15px #63B3ED;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Tooltips for buttons */
+        .btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: -40px;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        /* Glowing Interactive Progress Bar */
+        #progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            z-index: 9998;
+            cursor: none;
+        }
+
+        #progress {
+            height: 100%;
+            background: linear-gradient(90deg, #2B6CB0, #63B3ED, #00f2fe);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px #63B3ED;
+            position: relative;
+        }
+        
+        #progress::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #63B3ED;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- Presentation Iframe -->
+    <iframe id="presentation-frame" src=""></iframe>
+    
+    <!-- Glassmorphism Controls -->
+    <div class="controls-wrapper">
+        <div class="controls">
+            <button class="btn" id="prev-btn" onclick="prevSlide()" data-tooltip="Previous Slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="btn" id="fullscreen-btn" onclick="toggleFullScreen()" data-tooltip="Toggle Fullscreen">
+                <i class="fas fa-expand"></i>
+            </button>
+            <button class="btn" id="next-btn" onclick="nextSlide()" data-tooltip="Next Slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Interactive Progress Bar -->
+    <div id="progress-container" onclick="seekSlide(event)">
+        <div id="progress"></div>
+    </div>
+
+    <script>
+        const slides = [
+            "cover_page.html",
+            "academic_info.html",
+            "team_members.html",
+            "roadmap.html",
+            "intro.html",
+            "clinical_ions.html",
+            "ise_tech.html",
+            "hardware.html",
+            "sample_processing.html",
+            "workflow.html",
+            "calibration.html",
+            "quality_control.html",
+            "maintenance.html",
+            "troubleshooting.html",
+            "future_trends.html",
+            "thank_you.html"
+        ];
+
+        let currentSlideIndex = 0;
+        const iframe = document.getElementById('presentation-frame');
+        const progressBar = document.getElementById('progress');
+        let isTransitioning = false;
+
+        function loadSlide(index) {
+            if (index >= 0 && index < slides.length && !isTransitioning) {
+                isTransitioning = true;
+                currentSlideIndex = index;
+                
+                // Fade out
+                iframe.style.opacity = 0;
+                
+                setTimeout(() => {
+                    iframe.src = slides[currentSlideIndex];
+                }, 300); // wait for fade out
+                
+                updateProgress();
+            }
+        }
+
+        // Wait for iframe to load before fading in
+        iframe.addEventListener('load', () => {
+            iframe.style.opacity = 1;
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 500); // transition duration
+        });
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                loadSlide(currentSlideIndex + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                loadSlide(currentSlideIndex - 1);
+            }
+        }
+        
+        function seekSlide(e) {
+            const container = document.getElementById('progress-container');
+            const clickX = e.clientX;
+            const width = container.clientWidth;
+            const clickPercentage = clickX / width;
+            const targetSlide = Math.floor(clickPercentage * slides.length);
+            if(targetSlide !== currentSlideIndex) {
+                loadSlide(targetSlide);
+            }
+        }
+
+        function updateProgress() {
+            const progressPercentage = ((currentSlideIndex + 1) / slides.length) * 100;
+            progressBar.style.width = progressPercentage + "%";
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Keyboard navigation
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                prevSlide();
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullScreen();
+            }
+        });
+
+        // Listen to messages from iframe to handle keyboard navigation and cursor when iframe has focus
+        window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'mousemove') {
+                const posX = e.data.clientX;
+                const posY = e.data.clientY;
+                dot.style.left = `${posX}px`;
+                dot.style.top = `${posY}px`;
+                setTimeout(() => {
+                    outline.style.left = `${posX}px`;
+                    outline.style.top = `${posY}px`;
+                }, 50);
+            } else if (e.data && e.data.key) {
+                let key = e.data.key;
+                if (key === 'ArrowRight' || key === ' ' || key === 'PageDown') {
+                    nextSlide();
+                } else if (key === 'ArrowLeft' || key === 'PageUp') {
+                    prevSlide();
+                } else if (key === 'f' || key === 'F') {
+                    toggleFullScreen();
+                }
+            }
+        });
+
+        // Custom Cursor Logic
+        const dot = document.getElementById('cursor-dot');
+        const outline = document.getElementById('cursor-outline');
+        
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            dot.style.left = `${posX}px`;
+            dot.style.top = `${posY}px`;
+            
+            // Add a slight delay to the outline for trailing effect
+            setTimeout(() => {
+                outline.style.left = `${posX}px`;
+                outline.style.top = `${posY}px`;
+            }, 50);
+        });
+        
+        // Add hover effect to cursor when hovering over buttons
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                outline.style.width = '60px';
+                outline.style.height = '60px';
+                outline.style.backgroundColor = 'rgba(99, 179, 237, 0.2)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                outline.style.width = '40px';
+                outline.style.height = '40px';
+                outline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // Initialize first slide
+        loadSlide(0);
+    </script>
+</body>
+</html>
