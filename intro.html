@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+      @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+      body { cursor: none;  margin: 0; overflow: hidden; }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        color: #1A365D;
+        overflow: hidden;
+      }
+      .background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('./bg_bright_final.jpg') no-repeat center center; background-size: cover; animation: slowZoom 40s ease-in-out infinite; z-index: -2; }
+      .overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.75); z-index: -1; }
+      .header-area { padding-top: 60px; padding-left: 80px; padding-right: 80px; animation: fadeInUp 0.8s ease-out; }
+      .slide-title { font-size: 64px; font-weight: 800; color: #2B6CB0; margin-bottom: 10px; text-transform: uppercase; }
+      .accent-rule { height: 5px; background: linear-gradient(90deg, #2B6CB0, #63B3ED); width: 150px; margin-top: 10px; }
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 28px;
+        padding: 20px 80px;
+        flex-grow: 1;
+      }
+      .left-col { grid-column: span 7; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.2s; }
+      .right-col { grid-column: span 5; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.4s; }
+      .body-text {
+        font-size: 22px; font-weight: 500; line-height: 1.6; margin-bottom: 10px; background: rgba(255,255,255,0.8);
+        padding: 12px;
+        backdrop-filter: blur(10px); border-left: 5px solid #2B6CB0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      }
+      .highlight-box { background: white; border: 1px solid #E2E8F0; padding: 24px; min-height: 260px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+      .box-label { font-weight: 800; color: #2B6CB0; font-size: 14px; text-transform: uppercase; margin-bottom: 15px; display: block; }
+      .box-title { font-size: 28px; font-weight: 800; color: #2D3748; margin-bottom: 20px; }
+      .box-content { font-size: 18px; font-weight: 500; line-height: 1.5; color: #4A5568; }
+      .footer-tag { padding: 12px 80px; font-size: 14px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; background: rgba(255,255,255,0.8); border-top: 1px solid #E2E8F0; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="background-layer"></div>
+        <div class="overlay-layer"></div>
+        <div class="header-area">
+            <h1 class="slide-title">1. Introduction</h1>
+            <div class="accent-rule"></div>
+        </div>
+        <div class="content-grid">
+            <div class="left-col">
+                <p class="body-text">
+                    Electrolyte analyzers are indispensable diagnostic instruments in modern medicine, designed to measure the concentration of vital ions in biological fluids such as whole blood, serum, plasma, and urine.
+                </p>
+                <p class="body-text">
+                    These devices serve as the cornerstone of metabolic monitoring, providing clinicians with real-time data essential for managing patient homeostasis.
+                </p>
+            </div>
+            <div class="right-col">
+                <div class="highlight-box">
+                    <span class="box-label">Core Objective</span>
+                    <h3 class="box-title">Precision Diagnostics</h3>
+                    <p class="box-content">
+                        Systems are engineered for extreme precision, often achieving a coefficient of variation (CV) of less than 1%. Their primary role is to assess acid-base balance and renal function.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-tag">Module 01: Foundations of Analysis</div>
+    </div>
+<script>
+window.addEventListener('keydown', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({key: e.key}, '*');
+    }
+});
+window.addEventListener('mousemove', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({type: 'mousemove', clientX: e.clientX, clientY: e.clientY}, '*');
+    }
+});
+</script>
+</body>
+</html>
+
+
+

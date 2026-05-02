@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+      @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+      body { cursor: none;  margin: 0; overflow: hidden; }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #1A365D;
+        overflow: hidden;
+        text-align: center;
+      }
+      .background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('./bg_bright_final.jpg') no-repeat center center; background-size: cover; animation: slowZoom 60s linear infinite; z-index: -2; }
+      .overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.65); z-index: -1; }
+      .title-wrap { animation: fadeInUp 1s ease-out; background: rgba(255, 255, 255, 0.4); padding: 60px; backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+      @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+      body { cursor: none;  margin: 0; overflow: hidden; }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #1A365D;
+        overflow: hidden;
+        text-align: center;
+      }
+      .background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('./bg_bright_final.jpg') no-repeat center center; background-size: cover; animation: slowZoom 60s linear infinite; z-index: -2; }
+      .overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.65); z-index: -1; }
+      .title-wrap { animation: fadeInUp 1s ease-out; background: rgba(255, 255, 255, 0.4); padding: 60px; backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+      .main-title { font-size: 84px; font-weight: 800; color: #2B6CB0; margin: 0; line-height: 1.1; text-transform: uppercase; letter-spacing: -2px; }
+      .sub-title { font-size: 32px; font-weight: 500; color: #4A5568; margin-top: 20px; letter-spacing: 4px; text-transform: uppercase; }
+      .accent-line { height: 8px; width: 200px; background: linear-gradient(90deg, #2B6CB0, #63B3ED); margin: 40px auto; }
+      .footer-info { position: absolute; bottom: 50px; font-size: 18px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+        <div class="background-layer"></div>
+        <div class="overlay-layer"></div>
+        <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
+        <div class="title-wrap" style="z-index: 1;">
+            <h1 class="main-title">Electrolyte<br>Analyzer</h1>
+            <div class="accent-line"></div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js">window.addEventListener('mousemove', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({type: 'mousemove', clientX: e.clientX, clientY: e.clientY}, '*');
+    }
+});
+</script>
+<script>
+window.addEventListener('keydown', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({key: e.key}, '*');
+    }
+});
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+    "color": { "value": "#2B6CB0" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.6, "random": false },
+    "size": { "value": 4, "random": true },
+    "line_linked": { "enable": true, "distance": 150, "color": "#63B3ED", "opacity": 0.4, "width": 1.5 },
+    "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+    "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+  },
+  "retina_detect": true
+});
+window.addEventListener('mousemove', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({type: 'mousemove', clientX: e.clientX, clientY: e.clientY}, '*');
+    }
+});
+</script>
+</body>
+</html>
+

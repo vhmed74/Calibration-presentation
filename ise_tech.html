@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+      @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+      body { cursor: none;  margin: 0; overflow: hidden; }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        color: #1A365D;
+        overflow: hidden;
+      }
+      .background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('./bg_bright_final.jpg') no-repeat center center; background-size: cover; animation: slowZoom 40s ease-in-out infinite; z-index: -2; }
+      .overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.75); z-index: -1; }
+      .header-area { padding-top: 50px; padding-left: 80px; padding-right: 80px; animation: fadeInUp 0.8s ease-out; }
+      .slide-title { font-size: 56px; font-weight: 800; color: #2B6CB0; margin-bottom: 5px; text-transform: uppercase; }
+      .accent-rule { height: 5px; background: linear-gradient(90deg, #2B6CB0, #63B3ED); width: 180px; margin-top: 5px; }
+      .content-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 28px; padding: 18px 60px; flex-grow: 1; }
+      .text-col { grid-column: span 6; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.2s; }
+      .image-col { grid-column: span 6; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.4s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .tech-desc { font-size: 18px; line-height: 1.6; color: #4A5568; background: rgba(255, 255, 255, 0.85); padding: 14px; border-left: 6px solid #2B6CB0; backdrop-filter: blur(10px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+      .formula-highlight { margin-top: 20px; background: rgba(235, 248, 255, 0.9); padding: 14px; border: 1px solid #BEE3F8; backdrop-filter: blur(5px); }
+      .formula-title { font-weight: 800; color: #2B6CB0; font-size: 14px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+      .formula-math { font-size: 28px; font-weight: 800; color: #2D3748; font-family: 'Courier New', monospace; }
+      .electrodes-img { width: 420px; height: 340px; object-fit: contain; background: white; padding: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #E2E8F0; }
+      .img-caption { margin-top: 10px; font-size: 14px; font-weight: 800; color: #2B6CB0; text-align: center; text-transform: uppercase; }
+      .footer-tag { padding: 12px 60px; font-size: 14px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; background: rgba(255, 255, 255, 0.8); border-top: 1px solid #E2E8F0; }
+    </style>
+</head>
+<body><div class="slide-container">
+        <div class="background-layer"></div>
+        <div class="overlay-layer"></div>
+        <div class="header-area">
+            <h1 class="slide-title">3. ISE Technology &amp; Physics</h1>
+            <div class="accent-rule"></div>
+        </div>
+        <div class="content-grid">
+            <div class="text-col">
+                <p class="tech-desc">
+                    The <strong>Roche 9180</strong> utilizes highly sensitive <strong>modular electrodes</strong>. Each electrode is specifically engineered to respond to the electrical potential of a target ion.
+                </p>
+                <div class="formula-highlight">
+                    <span class="formula-title">Mathematical Precision</span>
+                    <div class="formula-math">E = Eº + (RT/nF) ln(a)</div>
+                    <p style="font-size: 14px; margin-top: 10px; color: #4A5568;">
+                        The system uses the <strong>Nernst Equation</strong> to translate the measured potential into precise ionic concentrations for Na+, K+, Cl-, Ca2+, and Li+.
+                    </p>
+                </div>
+                <p style="margin-top: 16px; font-size: 16px; color: #4A5568;">
+                    Roche's proprietary <strong>liquid-membrane technology</strong> ensures minimal interference and high durability.
+                </p>
+            </div>
+            <div class="image-col">
+                <img src="./roche_electrodes.webp" class="electrodes-img" alt="Roche 9180 Electrodes">
+                <div class="img-caption">Roche 9180 Modular ISE Electrodes</div>
+            </div>
+        </div>
+</div>
+<script>
+window.addEventListener('keydown', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({key: e.key}, '*');
+    }
+});
+window.addEventListener('mousemove', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({type: 'mousemove', clientX: e.clientX, clientY: e.clientY}, '*');
+    }
+});
+</script>
+</body>
+</html>
+
+
+

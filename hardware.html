@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+      @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+      body { cursor: none;  margin: 0; overflow: hidden; }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        color: #1A365D;
+        overflow: hidden;
+      }
+      .background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('./bg_bright_final.jpg') no-repeat center center; background-size: cover; animation: slowZoom 40s ease-in-out infinite; z-index: -2; }
+      .overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.75); z-index: -1; }
+      .header-area { padding-top: 50px; padding-left: 80px; padding-right: 80px; animation: fadeInUp 0.8s ease-out; }
+      .slide-title { font-size: 56px; font-weight: 800; color: #2B6CB0; margin-bottom: 5px; text-transform: uppercase; }
+      .accent-rule { height: 5px; background: linear-gradient(90deg, #2B6CB0, #63B3ED); width: 180px; margin-top: 5px; }
+      .content-layout { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; padding: 20px 80px; flex-grow: 1; }
+      .cards-col { grid-column: span 7; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+      .image-col { grid-column: span 5; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .hw-card { background: rgba(255, 255, 255, 0.85); border: 1px solid #E2E8F0; padding: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); animation: fadeInUp 1s ease-out forwards; opacity: 0; backdrop-filter: blur(10px); }
+      .hw-card:nth-child(1) { animation-delay: 0.2s; }
+      .hw-card:nth-child(2) { animation-delay: 0.3s; }
+      .hw-card:nth-child(3) { animation-delay: 0.4s; }
+      .hw-card:nth-child(4) { animation-delay: 0.5s; }
+      .card-icon { color: #2B6CB0; font-size: 24px; margin-bottom: 10px; }
+      .card-title { font-size: 16px; font-weight: 800; color: #2D3748; margin-bottom: 8px; text-transform: uppercase; }
+      .card-desc { font-size: 13px; line-height: 1.4; color: #4A5568; }
+      .roche-img { width: 420px; height: 380px; object-fit: contain; background: white; padding: 15px; border: 1px solid #E2E8F0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+      .img-label { margin-top: 15px; font-size: 16px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; letter-spacing: 1px; }
+      .footer-tag { padding: 15px 80px; font-size: 14px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; background: rgba(255, 255, 255, 0.8); border-top: 1px solid #E2E8F0; }
+    </style>
+</head>
+<body><div class="slide-container">
+        <div class="background-layer"></div>
+        <div class="overlay-layer"></div>
+        <div class="header-area">
+            <h1 class="slide-title">4. Hardware Architecture</h1>
+            <div class="accent-rule"></div>
+        </div>
+        <div class="content-layout">
+            <div class="cards-col">
+                <div class="hw-card">
+                    <i class="fas fa-microchip card-icon"></i>
+                    <h3 class="card-title">Roche 9180 Unit</h3>
+                    <p class="card-desc">A compact, semi-automated analyzer designed for high-precision electrolyte measurement in small to medium labs.</p>
+                </div>
+                <div class="hw-card">
+                    <i class="fas fa-tint card-icon"></i>
+                    <h3 class="card-title">Snap-Pak Reagents</h3>
+                    <p class="card-desc">All-in-one reagent system containing calibrators and waste container for safe, touch-free handling.</p>
+                </div>
+                <div class="hw-card">
+                    <i class="fas fa-vial card-icon"></i>
+                    <h3 class="card-title">Modular Electrodes</h3>
+                    <p class="card-desc">Individual ISE electrodes for Na+, K+, Cl-, Ca2+, and Li+ that can be replaced independently.</p>
+                </div>
+                <div class="hw-card">
+                    <i class="fas fa-print card-icon"></i>
+                    <h3 class="card-title">Built-in Printer</h3>
+                    <p class="card-desc">Integrated thermal printer for immediate documentation of results and calibration data.</p>
+                </div>
+            </div>
+            <div class="image-col">
+                <img src="./roche_9180_main.jpg" class="roche-img" alt="Roche 9180 Main Unit">
+                <div class="img-label">Roche 9180 Analyzer</div>
+            </div>
+        </div>
+</div>
+<script>
+window.addEventListener('keydown', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({key: e.key}, '*');
+    }
+});
+window.addEventListener('mousemove', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({type: 'mousemove', clientX: e.clientX, clientY: e.clientY}, '*');
+    }
+});
+</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+      @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+      body { cursor: none;  margin: 0; overflow: hidden; }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        color: #1A365D;
+        overflow: hidden;
+      }
+      .background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('./bg_bright_final.jpg') no-repeat center center; background-size: cover; animation: slowZoom 40s ease-in-out infinite; z-index: -2; }
+      .overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.75); z-index: -1; }
+      .header-area { padding-top: 50px; padding-left: 80px; padding-right: 80px; animation: fadeInUp 0.8s ease-out; }
+      .slide-title { font-size: 56px; font-weight: 800; color: #2B6CB0; margin-bottom: 5px; text-transform: uppercase; }
+      .accent-rule { height: 5px; background: linear-gradient(90deg, #2B6CB0, #63B3ED); width: 180px; margin-top: 5px; }
+      .content-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; padding: 20px 80px; flex-grow: 1; }
+      .error-table {
+        grid-column: span 12; border-collapse: collapse; width: 100%; background: rgba(255, 255, 255, 0.85);
+        animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.2s; border: 1px solid #E2E8F0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); backdrop-filter: blur(10px);
+      }
+      .error-table th { text-align: left; padding: 10px; background: rgba(247, 250, 252, 0.9); color: #2B6CB0; font-weight: 800; text-transform: uppercase; font-size: 14px; border-bottom: 2px solid #E2E8F0; }
+      .error-table td { padding: 10px; border-bottom: 1px solid #E2E8F0; font-size: 14px; font-weight: 500; color: #4A5568; }
+      .error-code { font-weight: 800; color: #2B6CB0; width: 20%; }
+      .note-box {
+        grid-column: span 12; background: rgba(43, 108, 176, 0.9); color: #FFFFFF; padding: 15px; margin-top: 10px;
+        animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.4s; border-left: 8px solid #63B3ED;
+      }
+      .note-text { font-size: 15px; line-height: 1.4; margin: 0; }
+      .footer-tag { padding: 15px 80px; font-size: 14px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; background: rgba(255, 255, 255, 0.8); border-top: 1px solid #E2E8F0; }
+    </style>
+</head>
+<body><div class="slide-container">
+        <div class="background-layer"></div>
+        <div class="overlay-layer"></div>
+        <div class="header-area">
+            <h1 class="slide-title">10. Troubleshooting &amp; Error Resolution</h1>
+            <div class="accent-rule"></div>
+        </div>
+        <div class="content-grid">
+            <table class="error-table">
+                <thead>
+                    <tr>
+                        <th>Common Error</th>
+                        <th>Likely Root Cause</th>
+                        <th>Resolution Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="error-code">Slope Error</td>
+                        <td>Electrode aging or protein buildup.</td>
+                        <td>Perform deproteinization; check slope history; replace if &lt; 45 mV.</td>
+                    </tr>
+                    <tr>
+                        <td class="error-code">Aspiration Failure</td>
+                        <td>Loose fluidic fittings or worn tubing.</td>
+                        <td>Tighten all connections; replace pump tubing; check probe for clots.</td>
+                    </tr>
+                    <tr>
+                        <td class="error-code">Voltage Drift</td>
+                        <td>Temperature shifts or air bubbles.</td>
+                        <td>Recalibrate system; check for fluidic leaks; verify grounding integrity.</td>
+                    </tr>
+                    <tr>
+                        <td class="error-code">QC Out of Range</td>
+                        <td>Expired controls or calibration shift.</td>
+                        <td>Rerun with fresh vial; perform 2-point calibration; check L-J trends.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note-box">
+                <p class="note-text">
+                    <strong>Technical Advisory:</strong> Always follow a "simple-to-complex" logic. Start with basic fluidic and electrical checks before replacing expensive electrodes. If issues persist, consult authorized technical support.
+                </p>
+            </div>
+        </div>
+</div>
+<script>
+window.addEventListener('keydown', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({key: e.key}, '*');
+    }
+});
+window.addEventListener('mousemove', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({type: 'mousemove', clientX: e.clientX, clientY: e.clientY}, '*');
+    }
+});
+</script>
+</body>
+</html>
+
+
+

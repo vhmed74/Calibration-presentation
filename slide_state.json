@@ -1,0 +1,204 @@
+{
+  "project_info": {
+    "title": "Presentation Roadmap: 11 Core Sections",
+    "created": 1776893172.9307663,
+    "last_updated": 1777636338.553204,
+    "total_slides": 16
+  },
+  "slides": [
+    {
+      "id": "cover_page",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "academic_info",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "team_members",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "roadmap",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "intro",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "clinical_ions",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "ise_tech",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "hardware",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "sample_processing",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "workflow",
+      "state": "edited",
+      "pageNum": 10
+    },
+    {
+      "id": "calibration",
+      "state": "edited",
+      "pageNum": 11
+    },
+    {
+      "id": "quality_control",
+      "state": "edited",
+      "pageNum": 12
+    },
+    {
+      "id": "maintenance",
+      "state": "edited",
+      "pageNum": 13
+    },
+    {
+      "id": "troubleshooting",
+      "state": "edited",
+      "pageNum": 14
+    },
+    {
+      "id": "future_trends",
+      "state": "edited",
+      "pageNum": 15
+    },
+    {
+      "id": "thank_you",
+      "state": "edited",
+      "pageNum": 16
+    }
+  ],
+  "outline": [
+    {
+      "id": "cover_page",
+      "title": "Electrolyte Analyzer: Clinical Excellence & Precision",
+      "summary": "شريحة الغلاف الرئيسية التي تحتوي على عنوان العرض، العنوان الفرعي، وعناصر تصميم بصرية احترافية.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "academic_info",
+      "title": "Academic Information",
+      "summary": "Slide containing subject name, doctors' names, and university/faculty information with logos.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "team_members",
+      "title": "Team Members",
+      "summary": "Slide listing the 11 team members with their respective systems (Old System / New System).",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "roadmap",
+      "title": "Presentation Roadmap: 11 Core Sections",
+      "summary": "نظرة عامة على الـ 11 جزئية التي سيتم تغطيتها في العرض، مع تقسيمها إلى مجموعات منطقية.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "intro",
+      "title": "1. Introduction to Electrolyte Analysis",
+      "summary": "تعريف بمحلل الإلكتروليتات، أهميته في الرعاية الحرجة، ودوره في مراقبة التمثيل الغذائي.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "clinical_ions",
+      "title": "2. Clinical Significance of Key Ions",
+      "summary": "تفصيل للأدوار الحيوية للصوديوم والبوتاسيوم والكلوريد، ونطاقاتها الطبيعية، والمخاطر السريرية لاختلالها.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "ise_tech",
+      "title": "3. Working Principle: ISE Technology",
+      "summary": "شرح تقنية الأقطاب الانتقائية للأيونات (ISE)، الجهد الكهربائي، ومعادلة نيرنست.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "hardware",
+      "title": "4. Hardware Architecture & Modules",
+      "summary": "تحليل لمكونات الجهاز من وحدات المحاليل، الأقطاب، نظام السوائل، ووحدة التحكم.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "sample_processing",
+      "title": "5. Sample Processing & Handling",
+      "summary": "أنواع العينات المقبولة، بروتوكولات المناولة، ومخاطر التحلل الدموي (Hemolysis).",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "workflow",
+      "title": "6. Operational Workflow Guide",
+      "summary": "دليل خطوة بخطوة من التحضير والمعايرة إلى تحليل العينة والتحقق من النتائج.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "calibration",
+      "title": "7. Calibration Science: Precision Control",
+      "summary": "الفرق بين المعايرة بنقطة واحدة ونقطتين، مفهوم الـ Slope، وأهميته في دقة القياس.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "quality_control",
+      "title": "8. Quality Control (QC) Protocols",
+      "summary": "شرح الـ IQC، مخططات ليفي-جينينغز، وقواعد ويستجارد لضمان جودة النتائج.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "maintenance",
+      "title": "9. Routine Maintenance Protocols",
+      "summary": "جدول الصيانة اليومية والأسبوعية والشهرية لضمان استمرارية عمل الجهاز بكفاءة.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "troubleshooting",
+      "title": "10. Troubleshooting Common Errors",
+      "summary": "تحديد الأخطاء الشائعة (Slope, Aspiration, Drift) وحلولها التقنية.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "future_trends",
+      "title": "11. Future Trends in Diagnostics",
+      "summary": "مستقبل التشخيص: الذكاء الاصطناعي، الأجهزة المحمولة، والحساسات القابلة للارتداء.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "thank_you",
+      "title": "Thank You",
+      "summary": "Closing slide for the presentation.",
+      "image_plan": "",
+      "slide_template_key": ""
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+      @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+      body { cursor: none;  margin: 0; overflow: hidden; }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        color: #1A365D;
+        overflow: hidden;
+      }
+      .background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('./bg_bright_final.jpg') no-repeat center center; background-size: cover; animation: slowZoom 40s ease-in-out infinite; z-index: -2; }
+      .overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.75); z-index: -1; }
+      
+      .logos-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 32px 80px;
+        animation: fadeInUp 0.8s ease-out;
+      }
+      .logo-img { height: 140px; width: 140px; object-fit: contain; }
+      
+      .main-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 80px;
+        animation: fadeInUp 1s ease-out forwards;
+        opacity: 0;
+        animation-delay: 0.2s;
+      }
+      
+      .subject-box {
+        background: rgba(43, 108, 176, 0.9);
+        color: white;
+        padding: 25px 50px;
+        backdrop-filter: blur(10px);
+        margin-bottom: 30px;
+        border-left: 10px solid #63B3ED;
+        box-shadow: 0 10px 30px rgba(43, 108, 176, 0.3);
+      }
+      .subject-label { font-size: 18px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #BEE3F8; display: block; margin-bottom: 8px; }
+      .subject-name { font-size: 44px; font-weight: 800; margin: 0; }
+      
+      .doctors-info { margin-bottom: 30px; }
+      .doc-label { font-size: 18px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; display: block; margin-bottom: 12px; }
+      .doc-name { font-size: 30px; font-weight: 800; color: #2D3748; margin: 4px 0; }
+      
+      .university-info {
+        border-top: 2px solid #E2E8F0;
+        padding-top: 25px;
+        width: 80%;
+      }
+      .uni-text { font-size: 22px; font-weight: 500; color: #4A5568; margin: 4px 0; }
+      .uni-bold { font-weight: 800; color: #2B6CB0; }
+
+      .footer-tag { padding: 12px 80px; font-size: 14px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; background: rgba(255, 255, 255, 0.8); border-top: 1px solid #E2E8F0; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="background-layer"></div>
+        <div class="overlay-layer"></div>
+        
+        <div class="logos-header">
+            <img src="./menofia_logo_correct.jpg" class="logo-img" alt="Menofia University Logo">
+            <img src="./faculty_logo_correct.jpg" class="logo-img" alt="Faculty of Applied Health Science Technology Logo">
+        </div>
+
+        <div class="main-content">
+            <div class="subject-box">
+                <span class="subject-label">Course Name</span>
+                <h1 class="subject-name">Calibration of Biomedical Equipment</h1>
+            </div>
+
+            <div class="doctors-info">
+                <span class="doc-label">Under the Supervision of</span>
+                <p class="doc-name">Dr. Essam Nabil</p>
+                <p class="doc-name">Dr. Abdelazim Sopieh</p>
+            </div>
+
+            <div class="university-info">
+                <p class="uni-text">Faculty of <span class="uni-bold">Applied Health Science Technology</span></p>
+                <p class="uni-text">Menofia University</p>
+            </div>
+        </div>
+
+        <div class="footer-tag">Academic Year 2025/2026</div>
+    </div>
+<script>
+window.addEventListener('keydown', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({key: e.key}, '*');
+    }
+});
+window.addEventListener('mousemove', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({type: 'mousemove', clientX: e.clientX, clientY: e.clientY}, '*');
+    }
+});
+</script>
+</body>
+</html>
+
+
+

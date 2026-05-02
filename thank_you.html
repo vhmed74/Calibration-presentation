@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
+      @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+      body { cursor: none;  margin: 0; overflow: hidden; }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #1A365D;
+        overflow: hidden;
+        text-align: center;
+      }
+      .background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('./bg_bright_final.jpg') no-repeat center center; background-size: cover; animation: slowZoom 60s linear infinite; z-index: -2; }
+      .overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.65); z-index: -1; }
+      
+      .content-wrap { animation: fadeInUp 1s ease-out; background: rgba(255, 255, 255, 0.4); padding: 60px 100px; backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+      .thanks-title { font-size: 100px; font-weight: 800; color: #2B6CB0; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
+      .accent-line { height: 8px; width: 150px; background: linear-gradient(90deg, #2B6CB0, #63B3ED); margin: 30px auto; }
+      .questions-text { font-size: 28px; font-weight: 500; color: #4A5568; margin-top: 20px; }
+      
+      .footer-info { position: absolute; bottom: 50px; font-size: 18px; font-weight: 800; color: #2B6CB0; text-transform: uppercase; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="background-layer"></div>
+        <div class="overlay-layer"></div>
+        
+        <div class="content-wrap">
+            <h1 class="thanks-title">Thank You</h1>
+            <div class="accent-line"></div>
+            <p class="questions-text">Any Questions?</p>
+        </div>
+
+        <div class="footer-info">Electrolyte Analyzer Calibration • 2026</div>
+    </div>
+<script>
+window.addEventListener('keydown', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({key: e.key}, '*');
+    }
+});
+window.addEventListener('mousemove', function(e) {
+    if(window.parent) {
+        window.parent.postMessage({type: 'mousemove', clientX: e.clientX, clientY: e.clientY}, '*');
+    }
+});
+</script>
+</body>
+</html>
+
+
+
